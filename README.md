@@ -5,7 +5,7 @@ In this project, I used file systems, directories, and accessing databases to fi
 
 I searched an "Intermediate Java" project, and this mp3 project is one of the first links that I've found that was very comprehensive, but it didn't hold your hand too much.
 
-The Project focused on 5 aspects of programming:
+The Project focused on different aspects of programming:
 
 
 
