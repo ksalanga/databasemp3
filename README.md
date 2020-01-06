@@ -1,7 +1,7 @@
 # databasemp3
 Accessing MP3 files to place into a database using Java
 
-In this project, I used file systems, directories, and accessing databases to find MP3 Files and input those files into an HTML server.
+In this project, I used file systems, directories, and accessing databases to find MP3 Files and input those files into an HTML website.
 
 I searched an "Intermediate Java" project, and this mp3 project is one of the first links that I've found that was very comprehensive, but it didn't hold your hand too much.
 
