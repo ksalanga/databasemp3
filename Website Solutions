@@ -1,4 +1,4 @@
-Original Solution 1:
+Solution 1:
         if (args.length != 1) {
                     throw new IllegalArgumentException("You need to specify a valid mp3 directory");
                 }
@@ -8,4 +8,14 @@ Original Solution 1:
 
                 if (!Files.exists(mp3Directory)) {
                     throw new IllegalArgumentException("The specified directory does not exist : " + mp3Directory);
+                }
+
+Solution 2:
+        List<Path> mp3Paths = new ArrayList<>();
+
+                try (DirectoryStream<Path> paths = Files.newDirectoryStream(mp3Directory, "*.mp3")) {
+                    paths.forEach(p -> {
+                        System.out.println("Found : " + p.getFileName().toString());
+                        mp3Paths.add(p);
+                    });
                 }

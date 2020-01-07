@@ -1,4 +1,5 @@
 package com.company;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -8,9 +9,9 @@ import java.util.List;
 public class Main {
     public static void main(String args[]) throws Exception {
         //1. Validating User Input
+        String directory = args[0];
+        Path path = Paths.get(directory);
         try {
-            String directory = args[0];
-            Path path = Paths.get(directory);
             if (Files.exists(path)) {
                 System.out.println("File found");
             } else {
@@ -24,8 +25,13 @@ public class Main {
 
         //2. Reading in directories & files
         List<Path> pathList = new ArrayList<Path>();
-
-
+        try (DirectoryStream<Path> stream =
+                     Files.newDirectoryStream(path, "*.mp3")) {
+            for (Path entry : stream) {
+                pathList.add(entry);
+            }
+        }
+        System.out.println(pathList);
 
     }
 
