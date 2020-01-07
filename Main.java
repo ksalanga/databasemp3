@@ -30,6 +30,9 @@ public class Main {
         //        if (!Files.exists(mp3Directory)) {
         //            throw new IllegalArgumentException("The specified directory does not exist : " + mp3Directory);
         //        }
+
+        //My Solution 2
+
     }
 
 
