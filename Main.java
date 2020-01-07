@@ -26,7 +26,7 @@ public class Main {
         //2. Reading in directories & files
         List<Path> pathList = new ArrayList<Path>();
         try (DirectoryStream<Path> stream =
-                     Files.newDirectoryStream(path, "*.mp3")) {
+                     Files.newDirectoryStream(path, "*.mp3")) { //uses glob syntax: pattern recognition behavior
             for (Path entry : stream) {
                 pathList.add(entry);
             }

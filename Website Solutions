@@ -19,3 +19,4 @@ Solution 2:
                         mp3Paths.add(p);
                     });
                 }
+Read more on glob: https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob
