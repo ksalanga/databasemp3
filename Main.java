@@ -2,12 +2,15 @@ package com.company;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String args[]) throws Exception {
-        //My solution 1
+        //1. Validating User Input
         try {
-            Path path = Paths.get(args[0]);
+            String directory = args[0];
+            Path path = Paths.get(directory);
             if (Files.exists(path)) {
                 System.out.println("File found");
             } else {
@@ -19,7 +22,10 @@ public class Main {
             System.out.println("File Path not found, try a new path\n" + e);
         }
 
-        //My Solution 2
+        //2. Reading in directories & files
+        List<Path> pathList = new ArrayList<Path>();
+
+
 
     }
 
