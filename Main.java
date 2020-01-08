@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.*;
-import com.mpatric.mp3agic.Mp3File;
+//import com.mpatric.mp3agic.Mp3File;
 
 public class Main {
     public static void main(String args[]) throws Exception {
@@ -35,7 +35,7 @@ public class Main {
         }
         System.out.println(pathList);
 
-        Mp3File mp3file = new Mp3File();
+//        Mp3File mp3file = new Mp3File();
     }
 
     // Step 3: The Domain Class - Part 2
