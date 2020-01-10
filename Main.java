@@ -1,4 +1,5 @@
 package com.company;
+import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -6,7 +7,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.*;
-//import com.mpatric.mp3agic.Mp3File;
+
+import com.mpatric.mp3agic.ID3v1Tag;
+import com.mpatric.mp3agic.InvalidDataException;
+import com.mpatric.mp3agic.Mp3File;
+import com.mpatric.mp3agic.UnsupportedTagException;
 
 public class Main {
     public static void main(String args[]) throws Exception {
@@ -26,16 +31,34 @@ public class Main {
         }
 
         //2. Reading in directories & files
-        List<Path> pathList = new ArrayList<Path>();
+        //3. Parsing MP3 metadata with an external library
+        List<Song> songList = new ArrayList<Song>();
         try (DirectoryStream<Path> stream =
                      Files.newDirectoryStream(path, "*.mp3")) { //uses glob syntax: pattern recognition behavior
-            for (Path entry : stream) {
-                pathList.add(entry);
-            }
+            stream.forEach(s -> {
+                try {
+                    Mp3File mp3file = new Mp3File(s);
+                    if (mp3file.hasId3v1Tag()) {
+                        ID3v1Tag id3v1Tag = (ID3v1Tag) mp3file.getId3v1Tag(); //had to cast for some reason
+                        String artist = id3v1Tag.getArtist();
+                        String year = id3v1Tag.getYear();
+                        String album = id3v1Tag.getAlbum();
+                        String title = id3v1Tag.getTitle();
+                        songList.add(new Song(artist, year, album, title));
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedTagException e) {
+                    e.printStackTrace();
+                } catch (InvalidDataException e) {
+                    e.printStackTrace();
+                }
+            });
         }
-        System.out.println(pathList);
 
-//        Mp3File mp3file = new Mp3File();
+        for (Song song : songList) {
+            System.out.println(song.getYear());
+        }
     }
 
     // Step 3: The Domain Class - Part 2
