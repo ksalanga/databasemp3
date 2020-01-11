@@ -20,3 +20,14 @@ Solution 2:
                     });
                 }
 Read more on glob: https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob
+
+Solution 3:
+        List<Song> songs = mp3Paths.stream().map(path -> {
+            try {
+                Mp3File mp3file = new Mp3File(path);
+                ID3v2 id3 = mp3file.getId3v2Tag();
+                return new Song(id3.getArtist(), id3.getYear(), id3.getAlbum(), id3.getTitle());
+            } catch (IOException | UnsupportedTagException | InvalidDataException e) {
+                throw new IllegalStateException(e);
+            }
+        }).collect(Collectors.toList());

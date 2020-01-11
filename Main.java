@@ -56,9 +56,7 @@ public class Main {
             });
         }
 
-        for (Song song : songList) {
-            System.out.println(song.getYear());
-        }
+
     }
 
     // Step 3: The Domain Class - Part 2
